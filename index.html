@@ -203,7 +203,7 @@ function render(force){
     $("stepno").textContent=(p.kind==="lead"?1:(restView?p.step+2:p.step+1))+" / "+W.steps.length;
     const nx=(p.kind==="work"||p.kind==="lead")?(p.kind==="lead"?null:W.steps[p.step+1]):null;
     const nsrc=p.kind==="lead"?W.steps[1]:(p.kind==="work"?W.steps[p.step+1]:W.steps[p.step+2]);
-    if(p.kind==="work"&&st.rest>0){$("nicon").innerHTML=st.icon;$("nname").textContent="Отдых "+st.rest+" с, затем "+(W.steps[p.step+1]?W.steps[p.step+1].n:"финиш")}
+    if(p.kind==="work"&&st.rest>0){$("nicon").innerHTML=st.icon;const rp=W.phases.find(q=>q.step===p.step&&q.kind==="rest");$("nname").textContent=(rp&&rp.prep?"Подготовка ":"Отдых ")+st.rest+" с, затем "+(W.steps[p.step+1]?W.steps[p.step+1].n:"финиш")}
     else if(nsrc){$("nicon").innerHTML=nsrc.icon;$("nname").textContent=nsrc.n}
     else{$("nicon").innerHTML="";$("nname").textContent="Финиш — конец занятия"}
     if(p.kind==="lead"){$("nicon").innerHTML=W.steps[0].icon;$("nname").textContent="Начинаем: "+W.steps[0].n}
